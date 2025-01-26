@@ -15,7 +15,11 @@ import {
 } from 'react-icons/bi';
 import ToolButton from './ToolButton';
 
-interface Props {}
+import { ChainedCommands, Editor } from '@tiptap/react';
+
+interface Props {
+	editor: Editor | null;
+}
 
 const tools = [
 	{
@@ -68,17 +72,55 @@ const tools = [
 	},
 ] as const;
 
-const Tools: FC<Props> = () => {
+const chainMethod = (
+	editor: Editor | null,
+	command: (chain: ChainedCommands) => ChainedCommands
+) => {
+	if (!editor) return;
+
+	command(editor.chain().focus()).run();
+};
+
+const Tools: FC<Props> = ({ editor }) => {
+	const handleOnClick = (task: string) => {
+		switch (task) {
+			case 'bold':
+				return chainMethod(editor, (chain) => chain.toggleBold());
+			case 'italic':
+				return chainMethod(editor, (chain) => chain.toggleItalic());
+			case 'underline':
+				return chainMethod(editor, (chain) => chain.toggleUnderline());
+			case 'strike':
+				return chainMethod(editor, (chain) => chain.toggleStrike());
+			case 'code':
+				return chainMethod(editor, (chain) => chain.toggleCode());
+			case 'codeblock':
+				return chainMethod(editor, (chain) => chain.toggleCodeBlock());
+
+			case 'orderList':
+				return chainMethod(editor, (chain) => chain.toggleOrderedList());
+			case 'bulletList':
+				return chainMethod(editor, (chain) => chain.toggleBulletList());
+			case 'left':
+				return chainMethod(editor, (chain) => chain.setTextAlign('left'));
+			case 'center':
+				return chainMethod(editor, (chain) => chain.setTextAlign('center'));
+			case 'right':
+				return chainMethod(editor, (chain) => chain.setTextAlign('right'));
+			// case 'image':
+			// 	return onImageSelection && onImageSelection();
+		}
+	};
 	return (
 		<div>
 			{tools.map(({ icon, task }, i) => {
 				return (
 					<ToolButton
 						key={i}
-						// onClick={() => handleOnClick(task)}
-						// active={
-						// 	editor?.isActive(task) || editor?.isActive({ textAlign: task })
-						// }
+						onClick={() => handleOnClick(task)}
+						active={
+							editor?.isActive(task) || editor?.isActive({ textAlign: task })
+						}
 					>
 						{icon}
 					</ToolButton>

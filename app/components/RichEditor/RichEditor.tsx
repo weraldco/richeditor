@@ -1,14 +1,21 @@
 'use client';
+import TextAlign from '@tiptap/extension-text-align';
+import Underline from '@tiptap/extension-underline';
 import { EditorContent, EditorProvider, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import React, { FC } from 'react';
 import Tools from './Tools';
 
 interface Props {}
-const extensions = [StarterKit];
 const RichEditor: FC<Props> = () => {
 	const editor = useEditor({
-		extensions,
+		extensions: [
+			StarterKit,
+			TextAlign.configure({
+				types: ['paragraph'],
+			}),
+			Underline,
+		],
 		editorProps: {
 			attributes: {
 				class:
@@ -19,7 +26,7 @@ const RichEditor: FC<Props> = () => {
 	});
 	return (
 		<div>
-			<Tools />
+			<Tools editor={editor} />
 			<EditorContent editor={editor} />
 			{/* <EditorProvider
 				extensions={[StarterKit]}
