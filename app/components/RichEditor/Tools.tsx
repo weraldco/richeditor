@@ -26,52 +26,52 @@ type TaskType = (typeof tools)[number]['task'];
 const tools = [
 	{
 		task: 'bold',
-		icon: <BiBold />,
+		icon: <BiBold size="18" />,
 	},
 	{
 		task: 'italic',
-		icon: <BiItalic />,
+		icon: <BiItalic size="18" />,
 	},
 	{
 		task: 'underline',
-		icon: <BiUnderline />,
+		icon: <BiUnderline size="18" />,
 	},
 	{
 		task: 'strike',
-		icon: <BiStrikethrough />,
+		icon: <BiStrikethrough size="18" />,
 	},
 	{
 		task: 'code',
-		icon: <BiCodeAlt />,
+		icon: <BiCodeAlt size="18" />,
 	},
 	{
 		task: 'codeblock',
-		icon: <BiCodeCurly />,
+		icon: <BiCodeCurly size="18" />,
 	},
 	{
 		task: 'left',
-		icon: <BiAlignLeft />,
+		icon: <BiAlignLeft size="18" />,
 	},
 	{
 		task: 'center',
-		icon: <BiAlignMiddle />,
+		icon: <BiAlignMiddle size="18" />,
 	},
 	{
 		task: 'right',
-		icon: <BiAlignRight />,
+		icon: <BiAlignRight size="18" />,
 	},
 	{
 		task: 'orderList',
-		icon: <BiListOl />,
+		icon: <BiListOl size="18" />,
 	},
 	{
 		task: 'bulletList',
-		icon: <BiListUl />,
+		icon: <BiListUl size="18" />,
 	},
-	{
-		task: 'image',
-		icon: <BiImage />,
-	},
+	// {
+	// 	task: 'image',
+	// 	icon: <BiImage size="24"/>,
+	// },
 ] as const;
 
 const chainMethod = (

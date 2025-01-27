@@ -22,7 +22,7 @@ const RichEditor: FC<Props> = () => {
 		editorProps: {
 			attributes: {
 				class:
-					'prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl outline-none p-2 border rounded-lg bg-blue-50 w-full flex',
+					'prose prose-sm sm:prose-lg lg:prose-lg xl:prose-2xl outline-none  min-h-[60vh] ',
 			},
 		},
 		immediatelyRender: false,
@@ -35,9 +35,9 @@ const RichEditor: FC<Props> = () => {
 
 	return (
 		<div className=" h-screen flex flex-col space-y-4 ">
-			<form action="" onSubmit={handleSubmit} className="flex flex-col gap-4">
+			<form className="flex flex-col gap-4">
 				<div className="">
-					<label htmlFor="title" className="text-sm italic text-gray-500">
+					<label htmlFor="title" className="text-sm italic text-gray-500 ">
 						Title
 					</label>
 					<input
@@ -57,12 +57,13 @@ const RichEditor: FC<Props> = () => {
 					<div className="sticky top-0 bg-white z-50">
 						<Tools editor={editor} />
 					</div>
-					<div className="flex-1 h-full p-2 ">
+					<div className="flex-1 h-full p-2 border rounded-b-3xl ">
 						<EditorContent editor={editor} />
 					</div>
 				</div>
 				<button
-					type="submit"
+					type="button"
+					onClick={handleSubmit}
 					className="bg-blue-500 p-2 w-full rounded-full text-white font-semibold"
 				>
 					Create New Post
