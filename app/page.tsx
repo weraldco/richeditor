@@ -1,3 +1,4 @@
+import AddNewJournalForm from './components/journal/AddNewJournalForm';
 import RichEditor from './components/RichEditor/RichEditor';
 
 export default function Home() {

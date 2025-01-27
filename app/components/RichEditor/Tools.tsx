@@ -21,6 +21,8 @@ interface Props {
 	editor: Editor | null;
 }
 
+type TaskType = (typeof tools)[number]['task'];
+
 const tools = [
 	{
 		task: 'bold',
@@ -82,7 +84,7 @@ const chainMethod = (
 };
 
 const Tools: FC<Props> = ({ editor }) => {
-	const handleOnClick = (task: string) => {
+	const handleOnClick = (task: TaskType) => {
 		switch (task) {
 			case 'bold':
 				return chainMethod(editor, (chain) => chain.toggleBold());
@@ -112,7 +114,7 @@ const Tools: FC<Props> = ({ editor }) => {
 		}
 	};
 	return (
-		<div>
+		<div className="grid grid-flow-col justify-center bg-gray-100">
 			{tools.map(({ icon, task }, i) => {
 				return (
 					<ToolButton
